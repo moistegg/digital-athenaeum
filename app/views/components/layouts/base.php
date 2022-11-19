@@ -41,7 +41,7 @@
             @apply transition-default focus:outline-none;
         }
         .btn-primary {
-            @apply text-indigo-50 bg-indigo-500 hover:bg-indigo-600 focus:ring-4 focus:ring-offset-1 focus:ring-indigo-200 focus:bg-indigo-600 rounded-lg tracking-wider font-semibold text-sm shadow-sm shadow-black/20;
+            @apply text-blue-50 bg-blue-500 hover:bg-blue-600 focus:ring-4 focus:ring-offset-1 focus:ring-blue-200 focus:bg-blue-600 rounded-lg tracking-wider font-semibold text-sm shadow-sm shadow-black/20;
         }
         .btn-secondary {
             @apply text-gray-900 bg-gray-200 hover:bg-gray-300 focus:ring-4 focus:ring-offset-1 focus:ring-gray-200 focus:bg-gray-300 rounded-lg tracking-wider font-semibold text-sm shadow-sm shadow-black/20;
@@ -68,10 +68,10 @@
             @apply w-full relative;
         }
         .form-input {
-            @apply appearance-none focus:outline-none transition-fast text-xs tracking-wider font-normal rounded-lg w-full focus:ring-4 focus:ring-offset-1;
+            @apply focus:outline-none transition-fast text-xs tracking-wider font-normal rounded-lg w-full focus:ring-4 focus:ring-offset-1 border border-gray-100;
         }
         .form-input.primary {
-            @apply text-gray-800 placeholder-gray-300 bg-gray-100 hover:bg-white focus:bg-white focus:ring-indigo-300;
+            @apply text-gray-800 placeholder-gray-300 bg-gray-100 hover:bg-white focus:bg-white focus:ring-blue-300;
         }
 
         .form-error {
@@ -83,7 +83,7 @@
         }
 
         .link-primary {
-            @apply hover:underline hover:text-indigo-800 transition-fast;
+            @apply hover:underline hover:text-blue-800 transition-fast;
         }
     </style>
 
@@ -94,8 +94,10 @@
     <title><?= $title ?? TITLE ?></title>
 </head>
 
-<body>
-    @content
+<body class="bg-white text-stone-700">
+    <main class="w-full max-w-screen-2xl mx-auto">
+        @content
+    </main>
 
     <!-- Flash notification -->
     <?php $flash = new Component('flash'); $flash->close() ?>

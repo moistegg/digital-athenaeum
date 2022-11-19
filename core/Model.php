@@ -22,4 +22,11 @@ class Model extends Database
         $value = (!empty($source_column)) ? $this->current_row[$source_column] : $source_column;
         return $this->table($target_table)->where($target_column, $value)->get();
     }
+
+    public function hasAll($target_table)
+    {
+        $this->where_clause = "";
+
+        return $this->table($target_table)->get();
+    }
 }

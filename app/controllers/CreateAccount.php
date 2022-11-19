@@ -10,11 +10,11 @@ class CreateAccount extends Controller
     
     public function Index()
     {
-        $email = null;
+        $username = null;
         $fullname = null;
 
         if (isset($_POST['create_account'])) {
-            $email = $_POST['email'];
+            $username = $_POST['username'];
             $password = $_POST['password'];
             $encrypt_password = md5($password);
             $confirm_password = $_POST['confirm_password'];
@@ -23,20 +23,19 @@ class CreateAccount extends Controller
             $role = 2;
 
             $UserModel = new UserModel;
+            $user = $UserModel->where('username', $username)->where('password', $encrypt_password)->first();
 
-            $user = $UserModel->where('email', $email)->where('password', $encrypt_password)->first();
-
-            if ($user > 0) {
+            if (count($user) > 0) {
                 Flash::set('warning', 'You already registered!', 'Account already exists. Please login');
                 return redirect('sign-in');
             } else {
                 if ($password === $confirm_password) {
                     $UserModel->create([
-                        'email' => $email,
+                        'username' => $username,
                         'password' => $encrypt_password,
                         'role' => $role,
                     ]);
-
+                    
                     $user_id = $UserModel->last_insert_id;
 
                     $ProfileModel = new ProfileModel;
@@ -53,9 +52,9 @@ class CreateAccount extends Controller
             }
         }
         
-        $this->title = "create account &mdash; " . TITLE;
+        $this->title = "Create Account &mdash; " . TITLE;
         $this->view('create-account', [
-            'email' => $email,
+            'username' => $username,
             'fullname' => $fullname,
         ]);
     }

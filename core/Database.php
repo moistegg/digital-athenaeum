@@ -74,6 +74,11 @@ class Database
             $this->sql = "DELETE FROM `$this->table_name`";
             $this->sql .= (empty($this->where_clause)) ? "" : " WHERE $this->where_clause";
         }
+
+        $this->where_clause = "";
+        $this->order_clause = "";
+        $this->create_column_value = [];
+        $this->update_column_value = [];
     }
 
     public function get() {
@@ -134,7 +139,7 @@ class Database
 
     public function save()
     {
-        $this->sqlGen('update');dd($this->sql);
+        $this->sqlGen('update');
         return ($this->query()) ? true : false;
     }
 
@@ -157,31 +162,31 @@ class Database
 
     public function delete() 
     {
-        $this->sqlGen('delete');dd($this->sql);
+        $this->sqlGen('delete');
         return ($this->query()) ? true : false;
     }
 
     public function where($column, $value)
     {
-        if (!empty($column) and !empty($value)) $this->where_clause .= (empty($this->where_clause)) ? "`$column` = '$value'" : " AND `$column` = '$value'";
+        $this->where_clause .= (empty($this->where_clause)) ? "`$column` = '$value'" : " AND `$column` = '$value'";
         return $this;
     }
 
     public function whereOr($column, $value)
     {
-        if (!empty($column) and !empty($value)) $this->where_clause .= " OR `$column` = '$value'";
+        $this->where_clause .= " OR `$column` = '$value'";
         return $this;
     }
 
     public function orderBy($column, $order) 
     {
-        if (!empty($column) and !empty($order)) $this->order_clause .= (empty($this->order_clause)) ? "`$column` $order" : ", `$column` $order";
+        $this->order_clause .= (empty($this->order_clause)) ? "`$column` $order" : ", `$column` $order";
         return $this;
     }
 
     public function table($table)
     {
-        if (!empty($table)) $this->table_name = $table;
+        $this->table_name = $table;
         return $this;
     }
 
@@ -189,7 +194,7 @@ class Database
     {
         $class = get_class($this);
         $all_methods = get_class_methods($class);
-        $exclude_methods = ['__construct', 'hasOne', 'hasMany', 'connect', 'query', 'sqlGen', 'get', 'first', 'getAllRelationshipMethods', 'getRelationship', 'save', 'create', 'update', 'delete', 'where', 'whereOr', 'orderBy', 'table'];
+        $exclude_methods = ['__construct', 'hasOne', 'hasMany', 'hasAll', 'connect', 'query', 'sqlGen', 'get', 'first', 'getAllRelationshipMethods', 'getRelationship', 'save', 'create', 'update', 'delete', 'where', 'whereOr', 'orderBy', 'table'];
 
         $methods = [];
         foreach ($all_methods as $method) {
