@@ -9,6 +9,10 @@ class Home extends Controller
     
     public function Index()
     {
-        $this->view('home');
+        $SubjectModel = new SubjectModel;
+        $subjects = $SubjectModel->get();
+        $this->view('home', [
+            'subjects' => $subjects,
+        ]);
     }
 }
