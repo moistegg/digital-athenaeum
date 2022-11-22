@@ -100,7 +100,7 @@
                                 <p class="text-sm font-light"><?=$row->about?></p>
                             </div>
 
-                            <a href="<?=route("material?view=$row->id")?>" class="btn btn-primary py-3 px-6 flex items-center space-x-2">
+                            <a href="<?=route("materials?view=$row->id")?>" class="btn btn-primary py-3 px-6 flex items-center space-x-2">
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
                                     <path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z" />
                                     <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
@@ -172,7 +172,9 @@
                                                         </div>
                                                     </div>
 
-                                                    <button type="submit" name="update_material_info" class="btn btn-primary w-full py-3">Update Material Information</button>
+                                                    <button type="submit" name="update_material_info" class="btn btn-primary w-full py-3">
+                                                        Update Material Information
+                                                    </button>
                                                 </form>
 
                                                 <form method="post" class="space-y-5" enctype="multipart/form-data">
@@ -184,7 +186,9 @@
                                                         </div>
                                                     </div>
                                         
-                                                    <button type="submit" name="update_material_thumbnail" class="btn btn-primary w-full py-3">Update Material Thumbnail</button>
+                                                    <button type="submit" name="update_material_thumbnail" class="btn btn-primary w-full py-3">
+                                                        Update Material Thumbnail
+                                                    </button>
                                                 </form>
 
                                                 <form method="post" class="space-y-5" enctype="multipart/form-data">
@@ -196,7 +200,9 @@
                                                         </div>
                                                     </div>
                                         
-                                                    <button type="submit" name="update_material_file" class="btn btn-primary w-full py-3">Update Material File</button>
+                                                    <button type="submit" name="update_material_file" class="btn btn-primary w-full py-3">
+                                                        Update Material File
+                                                    </button>
                                                 </form>
                                             </div>
                                         </div>
