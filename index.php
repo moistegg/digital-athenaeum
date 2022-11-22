@@ -14,6 +14,7 @@ include('config/apps.php');
 require_once('config/debug.php');
 require_once('config/functions.php');
 require_once('config/helpers.php');
+require_once('config/preset.php');
 
 
 spl_autoload_register(function ($class) {

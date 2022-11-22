@@ -178,6 +178,12 @@ class Database
         return $this;
     }
 
+    public function whereLike($column, $value)
+    {
+        $this->where_clause .= " LIKE `$column` = '$value'";
+        return $this;
+    }
+
     public function orderBy($column, $order) 
     {
         $this->order_clause .= (empty($this->order_clause)) ? "`$column` $order" : ", `$column` $order";
@@ -194,7 +200,7 @@ class Database
     {
         $class = get_class($this);
         $all_methods = get_class_methods($class);
-        $exclude_methods = ['__construct', 'hasOne', 'hasMany', 'hasAll', 'connect', 'query', 'sqlGen', 'get', 'first', 'getAllRelationshipMethods', 'getRelationship', 'save', 'create', 'update', 'delete', 'where', 'whereOr', 'orderBy', 'table'];
+        $exclude_methods = ['__construct', 'hasOne', 'hasMany', 'hasAll', 'connect', 'query', 'sqlGen', 'get', 'first', 'getAllRelationshipMethods', 'getRelationship', 'save', 'create', 'update', 'delete', 'where', 'whereOr', 'whereLike', 'orderBy', 'table'];
 
         $methods = [];
         foreach ($all_methods as $method) {

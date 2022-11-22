@@ -22,18 +22,18 @@
                         x-transition:leave-end="opacity-0 transform translate-y-3">
                         <span class="absolute bg-white border-t border-l border-gray-200 transform rotate-45 w-2 h-2 -top-1 right-2 pointer-events-none"></span>
 
-                        <a href="<?=route('profile')?>" class="w-full text-xs tracking-wider text-left px-4 py-2 text-gray-500 hover:text-gray-800 hover:bg-gray-100 transition-default">
+                        <a href="<?=route('profile')?>" class="w-full text-xs tracking-wider text-left px-4 py-2 text-gray-500 hover:text-gray-800 hover:bg-gray-100 transition-default whitespace-nowrap">
                             <?=auth()->getProfile->fullname?>
                         </a>
 
                         <?php if (auth()->role == 1): ?>
-                            <a href="<?=route('setting')?>" class="w-full text-xs tracking-wider text-left px-4 py-2 text-gray-500 hover:text-gray-800 hover:bg-gray-100 transition-default">
+                            <a href="<?=route('setting')?>" class="w-full text-xs tracking-wider text-left px-4 py-2 text-gray-500 hover:text-gray-800 hover:bg-gray-100 transition-default whitespace-nowrap">
                                 Setting
                             </a>
                         <?php endif; ?>
 
                         <form method="post" action="<?= route('logout') ?>" class="w-full">
-                            <button type="submit" name="logout" class="w-full text-xs tracking-wider text-left px-4 py-2 text-gray-500 hover:text-gray-800 hover:bg-gray-100 transition-default">
+                            <button type="submit" name="logout" class="w-full text-xs tracking-wider text-left px-4 py-2 text-gray-500 hover:text-gray-800 hover:bg-gray-100 transition-default whitespace-nowrap">
                                 Sign Out
                             </button>
                         </form>
@@ -62,10 +62,10 @@
         </div>
 
         <div class="grid grid-cols-4 p-3 text-white">
-            <a href="#" class="text-center">Home</a>
-            <a href="#" class="text-center">Journals</a>
-            <a href="#" class="text-center">Online Books</a>
-            <a href="#" class="text-center">Articles</a>
+            <a href="<?=route('')?>" class="text-center">Home</a>
+            <a href="<?=route('materials')?>" class="text-center">Journals</a>
+            <a href="<?=route('materials/1')?>" class="text-center">Online Books</a>
+            <a href="<?=route('materials/2')?>" class="text-center">Articles</a>
         </div>
     </div>
 </nav>
