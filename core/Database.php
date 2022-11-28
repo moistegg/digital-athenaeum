@@ -174,13 +174,19 @@ class Database
 
     public function whereOr($column, $value)
     {
-        $this->where_clause .= " OR `$column` = '$value'";
+        $this->where_clause .= (empty($this->where_clause)) ? "`$column` = '$value'" : " OR `$column` = '$value'";
         return $this;
     }
 
     public function whereLike($column, $value)
     {
-        $this->where_clause .= " LIKE `$column` = '$value'";
+        $this->where_clause .= (empty($this->where_clause)) ? "`$column` LIKE '$value'" : " AND `$column` LIKE '$value'";
+        return $this;
+    }
+
+    public function whereOrLike($column, $value)
+    {
+        $this->where_clause .= (empty($this->where_clause)) ? "`$column` LIKE '$value'" : " OR `$column` LIKE '$value'";
         return $this;
     }
 
@@ -200,7 +206,7 @@ class Database
     {
         $class = get_class($this);
         $all_methods = get_class_methods($class);
-        $exclude_methods = ['__construct', 'hasOne', 'hasMany', 'hasAll', 'connect', 'query', 'sqlGen', 'get', 'first', 'getAllRelationshipMethods', 'getRelationship', 'save', 'create', 'update', 'delete', 'where', 'whereOr', 'whereLike', 'orderBy', 'table'];
+        $exclude_methods = ['__construct', 'hasOne', 'hasMany', 'hasAll', 'connect', 'query', 'sqlGen', 'get', 'first', 'getAllRelationshipMethods', 'getRelationship', 'save', 'create', 'update', 'delete', 'where', 'whereOr', 'whereLike', 'whereOrLike', 'orderBy', 'table'];
 
         $methods = [];
         foreach ($all_methods as $method) {

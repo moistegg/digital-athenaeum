@@ -1,3 +1,12 @@
+<?php
+if (isset($_POST['search_query'])) {
+    $query = $_POST['query'];
+    if (!empty($query)) {
+        return redirect('materials?search='.$query);
+    }
+}
+?>
+
 <nav class="rounded-b-2xl bg-cover bg-bottom" style="background-image:url('https://images.unsplash.com/photo-1536965764833-5971e0abed7c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80')">
     <div class="rounded-b-2xl">
         <div class="pt-5 py-10 flex flex-col items-center space-y-10">
@@ -23,10 +32,10 @@
                         <span class="absolute bg-white border-t border-l border-gray-200 transform rotate-45 w-2 h-2 -top-1 right-2 pointer-events-none"></span>
 
                         <a href="<?=route('profile')?>" class="w-full text-xs tracking-wider text-left px-4 py-2 text-gray-500 hover:text-gray-800 hover:bg-gray-100 transition-default whitespace-nowrap">
-                            <?=auth()->getProfile->fullname?>
+                            <?=(auth()) ? auth()->getProfile->fullname : ''?>
                         </a>
 
-                        <?php if (auth()->role == 1): ?>
+                        <?php if (auth() and auth()->role == 1): ?>
                             <a href="<?=route('setting')?>" class="w-full text-xs tracking-wider text-left px-4 py-2 text-gray-500 hover:text-gray-800 hover:bg-gray-100 transition-default whitespace-nowrap">
                                 Setting
                             </a>
@@ -48,9 +57,9 @@
             <form method="post" class="w-full max-w-xl">
                 <div class="form">
                     <div class="form-input-group">
-                        <input type="text" id="search" class="form-input primary pl-3 pr-12 py-3" placeholder="Search Articles, Journals, Publications etc" />
+                        <input type="text" id="search" name="query" class="form-input primary pl-3 pr-12 py-3" placeholder="Search Articles, Journals, Publications etc" />
                         <span class="absolute inset-y-0 right-0 w-10 flex-center">
-                            <button type="button" class="btn h-full w-full flex-center hover:bg-white rounded-lg">
+                            <button type="submit" name="search_query" class="btn h-full w-full flex-center hover:bg-white rounded-lg">
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                                     <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
                                 </svg>

@@ -1,5 +1,5 @@
 <section class="mt-8 space-y-8 pb-5">
-    <p class="text-2xl font-bold">Hello, <?=auth()->getProfile->fullname?></p>
+    <p class="text-2xl font-bold">Hello, <?=(auth()) ? auth()->getProfile->fullname : ''?></p>
 
     <div class="space-y-4">
         <p class="text-lg font-semibold">Subjects</p>
