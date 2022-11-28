@@ -94,7 +94,7 @@
     <title><?= $title ?? TITLE ?></title>
 </head>
 
-<body class="bg-white text-stone-700">
+<body class="bg-orange-100 text-stone-700">
     <main class="w-full max-w-screen-2xl mx-auto">
         @content
     </main>
