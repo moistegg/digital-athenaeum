@@ -2,13 +2,10 @@
 
 class Materials extends Controller
 {
-    public function __construct()
-    {
-        if (!auth()) return redirect(DEFAULT_NON_AUTH_ROUTE);
-    }
-    
     public function Index($section = null)
     {
+        if (!auth()) return redirect(DEFAULT_NON_AUTH_ROUTE);
+        
         $page_title = [];
         $materials = [];
         
@@ -187,6 +184,27 @@ class Materials extends Controller
                 'subjects' => $subjects,
                 'materials' => $materials,
             ]);
+        }
+    }
+
+    
+
+    public function api($type = '')
+    {
+        if ($type == "materials-by-group") {
+            $SubjectModel = new SubjectModel;
+            $subjects = $SubjectModel->get();
+
+            echo json_encode($subjects);
+        } else if($type == "get") {
+            $material_id = $_GET['id'];
+
+            $MaterialModel = new MaterialModel;
+            $material = $MaterialModel->where('id', $material_id)->first();
+
+            echo json_encode($material);
+        } else {
+            echo json_encode([]);
         }
     }
 }

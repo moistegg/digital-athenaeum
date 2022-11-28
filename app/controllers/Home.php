@@ -18,16 +18,4 @@ class Home extends Controller
             'subjects' => $subjects,
         ]);
     }
-
-    public function api($type = '')
-    {
-        if ($type == "materials-by-group") {
-            $SubjectModel = new SubjectModel;
-            $subjects = $SubjectModel->get();
-
-            echo json_encode($subjects);
-        } else {
-            echo json_encode([]);
-        }
-    }
 }
